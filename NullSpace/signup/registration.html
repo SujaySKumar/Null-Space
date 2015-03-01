@@ -1,0 +1,98 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfonts-->
+<link href='http://fonts.googleapis.com/css?family=Exo:400,300,700' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+</head>
+<body background="./images/background.jpg">
+
+<div class="main">
+	
+		<form>
+		   <div class="lable">
+		        <div class="col_1_of_2 span_1_of_2"><input id="name" type="text" class="text" value="First Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'First Name';}" ></div>
+                <div class="col_1_of_2 span_1_of_2"><input id="company" type="text" class="text" value="Company Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Company Name';}"></div>
+                <div class="clear"> </div>
+            </div>  
+            <div class="lable">
+                <div class="col_1_of_2 span_1_of_2"><input id="username" type="text" class="text" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" ></div>
+                <div class="col_1_of_2 span_1_of_2"><input id="age" type="text" class="text" value="Age" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Age';}"></div>
+                <div class="clear"> </div>
+		   </div>
+		   <div class="lable-2">
+		        
+		        <input id="pass" type="password" class="text" value="Password " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password ';}">
+		        <input id="skype" type="text" class="text" value="SkypeID" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'SkypeID';}">
+		        <input id="address" type="text" class="text" value="Address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Address';}">
+		   </div>
+		   <div id="status">This is status</div>
+		   <h3>By creating an account, you agree to our <span class="term"><a href="#">Terms & Conditions</a></span></h3>
+		   <div class="submit">
+			  <button type="submit" id="confirm" onclick="makeRequest();" >Confirm</button>
+		   </div>
+		   <div class="clear"> </div>
+		</form>
+		<!-----//end-main---->
+		</div>
+		
+
+<script>
+	
+	function getXmlHttpObject()
+		{
+			var xmlhttp;
+			if(window.XMLHttpRequest)
+			{
+			// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+			}
+				else
+			{
+			// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			} 
+		return xmlhttp;
+		}
+
+function makeRequest()
+		{
+		
+		n = document.getElementById("name").value;
+		//c = document.getElementById("college").value;
+		c = document.getElementById("company").value;
+		u = document.getElementById("username").value;
+		a = document.getElementById("age").value;
+		pass = document.getElementById("password").value;
+		s = document.getElementById("skype").value;
+		add = document.getElementById("address").value;
+		alert("here");
+		//ev = checked_events();
+		//alert(ev);
+		//alert(n);
+		//alert(e);
+		//alert(p);
+		xmlHTTP=getXmlHttpObject();
+		xmlHTTP.open("POST","http://localhost/EventList/signup/reg.php",true);
+		xmlHTTP.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+		xmlHTTP.onreadystatechange = function() { if(xmlHTTP.readyState == 4 && xmlHTTP.status == 200) { var return_data = xmlHTTP.responseText; document.getElementById("status").innerHTML = return_data;  } }  
+		xmlHTTP.send("name=" + n + "&company=" + c +"&username=" + u + "&age=" + a +"&passw="+pass+"&skype="+s+"&address="+add);
+		document.getElementById("status").innerHTML = "processing";
+		//window.open("tech.php");
+		
+		}
+
+</script>
+</body>
+</head>
+</html>
